@@ -8,6 +8,7 @@ describe("Get Comments", () => {
   test("Can fetch comments for a movie", async () => {
     const id = "573a13b5f29313caabd42c2f"
     const movie = await MoviesDAO.getMovieByID(id)
+   // console.log("movie ", movie)
     expect(movie.title).toEqual("The Express")
     expect(movie.comments.length).toBe(147)
   })
@@ -19,6 +20,7 @@ describe("Get Comments", () => {
     const promises = movieIds.map(async id => {
       const movie = await MoviesDAO.getMovieByID(id)
       const comments = movie.comments
+      console.log("******* comments length", comments.length);
       const sortedComments = comments.slice()
       sortedComments.sort((a, b) => b.date.getTime() - a.date.getTime())
 

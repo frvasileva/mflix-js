@@ -83,13 +83,12 @@ export default class UsersDAO {
    */
   static async loginUser(email, jwt) {
     try {
-      
       // TODO Ticket: User Management
       // Use an UPSERT statement to update the "jwt" field in the document,
       // matching the "user_id" field with the email passed to this function.
       await sessions.updateOne(
         { user_id: email },
-        { $set: { jwt: jwt,  user_id: email } },
+        { $set: { jwt: jwt, user_id: email } },
         { upsert: true },
       )
       return { success: true }
@@ -175,8 +174,8 @@ export default class UsersDAO {
       // TODO Ticket: User Preferences
       // Use the data in "preferences" to update the user's preferences.
       const updateResponse = await users.updateOne(
-        { someField: someValue },
-        { $set: { someOtherField: someOtherValue } },
+        { email: email },
+        { $set: { preferences: preferences } },
       )
 
       if (updateResponse.matchedCount === 0) {
