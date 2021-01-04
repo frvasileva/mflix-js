@@ -36,6 +36,7 @@ describe("Create/Update Comments", () => {
     const commentsCollection = await global.mflixClient
       .db(process.env.MFLIX_NS)
       .collection("comments")
+
     const deleteResult = await commentsCollection.deleteMany({
       text: "fa-fe-fi-fo-fum",
     })

@@ -34,6 +34,7 @@ require("dotenv").config()
       .collection("movies")
       .find(predicate, projection)
       .toArray()
+      
     const moviesToMigrate = cursor.map(({ _id, lastupdated }) => ({
       updateOne: {
         filter: { _id: ObjectId(_id) },
